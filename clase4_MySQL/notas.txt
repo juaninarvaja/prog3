@@ -1,0 +1,56 @@
+cuando arranco el xampp tambvien arranco el mysql ademas del apache
+http://localhost:8080/phpmyadmin/ sitio
+nombre base
+tipo Utf8_spanish2_ci
+
+INSERT INTO `localidad`(`localidad`) VALUES ("OLAVARRIA"), ("TANDIL"),("AVELLANEDA"),("QUILMES")
+INSERT INTO `alumnos`(`nombre`, `legajo`, `localidad`) VALUES ("marcos",78,1),("juan",41,2)
+UPDATE `alumnos` SET `nombre`= "Jose" ,`legajo`= 999 WHERE id = 1
+DELETE FROM `alumnos` WHERE id = 1
+
+
+SELECT alumnos.nombre, localidad.localidad FROM alumnos, localidad
+ WHERE alumnos.localidad = localidad.id
+
+
+SELECT alumnos.nombre, alumnos.legajo, localidad.localidad FROM alumnos, localidad 
+WHERE alumnos.localidad = localidad.id
+
+Select* trae todas las columnas
+Select elegis las que queres
+
+SELECT l.localidad FROM localidad l WHERE 1 /// le pones un alias "l"
+
+SELECT l.localidad as ciudad FROM localidad l WHERE 1 // el nombre de la columna cambia a ciudad (solo para la muestra)
+ 
+ unir tablas del profe 
+ SELECT a.id, a.nombre,a.legajo,l.localidad FROM alumnos a, localidad l WHERE a.localidad = l.id
+
+ SELECT a.id, a.nombre,a.legajo,l.localidad FROM alumnos a, localidad l
+  WHERE a.localidad = l.id AND l.id = 1 //solo lo de olavarria id =1
+
+
+  SELECT a.id, a.nombre,a.legajo,l.localisdad FROM alumnos a, localidad l 
+  WHERE a.localidad = l.id AND l.localidad LIKE "OLAVARRIA" //vamos a usar este para comparar 
+  varchars ya que busca parecidos y tomaria tmb olavarria con minuscula por ejemplo
+
+la relacion de un fK a un pK de uno a uno o de muchos a uno se relaciona asi
+------------------------------------------------------
+la relacion de muchos a muchos (por ejemplo alumos y materias 
+ya que un alumno puede tener muchos alumnos y una materia muchos alumnos)
+se soluciona con una tabla intermedia "Materia-Alumnos" donde relaiconamos id de materia con id alumno 
+la tabla tiene id; id_materia; id_Alumno; 
+
+SELECT a.id, a.nombre,a.legajo, l.localidad, m.nombre FROM materia_alumno as ma, alumnos as a, 
+localidad as l, materias m
+ WHERE ma.id_materia = m.id 
+ AND ma.id_alumno = a.id
+  AND l.id = a.localidad
+  ///
+  SELECT a.id, a.nombre,a.legajo, l.localidad, m.nombre as Materia
+ FROM materia_alumno as ma, alumnos as a, localidad as l, materias m 
+  WHERE ma.id_materia = m.id 
+  AND ma.id_alumno = a.id 
+  AND l.id = a.localidad
+  ///
+  
