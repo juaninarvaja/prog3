@@ -1,0 +1,3 @@
+{"id":"111","nombre":"juan","email":"juan@hotmail.com","foto":"mifoto.png"}
+{"id":"111","nombre":"juan","email":"juan@hotmail.com","foto":"mifoto.png"}
+{"id":"111","nombre":"juan","email":"juan@hotmail.com","foto":"mifoto.png"}
